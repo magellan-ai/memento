@@ -2,6 +2,6 @@ homepage: "https://www.magellan.ai"
 documentation: "https://github.com/magellan-ai/memento"
 versions:
   # Latest version
-  - sha:
+  - sha: 997fb2a59a6685214e827e7b8764b5b1998466ff
     changeNotes: Initial release.
   # Older versions
