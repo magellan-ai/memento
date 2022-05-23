@@ -47,9 +47,10 @@ ___TEMPLATE_PARAMETERS___
 ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 const sendPixel = require('sendPixel');
+const getUrl = require('getUrl');
 const encodeUriComponent = require('encodeUriComponent');
 
-const url = "https://mgln.ai/pixel.gif?token=" + encodeUriComponent(data.token);
+const url = "https://mgln.ai/view.gif?token=" + encodeUriComponent(data.token) + "&url=" + encodeUriComponent(getUrl()) ;
 sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
 
 
@@ -77,7 +78,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://*.mgln.ai/pixel.gif?*"
+                "string": "https://mgln.ai/view.gif?*"
               }
             ]
           }
@@ -86,6 +87,31 @@ ___WEB_PERMISSIONS___
     },
     "clientAnnotations": {
       "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "get_url",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "urlParts",
+          "value": {
+            "type": 1,
+            "string": "any"
+          }
+        },
+        {
+          "key": "queriesAllowed",
+          "value": {
+            "type": 1,
+            "string": "any"
+          }
+        }
+      ]
     },
     "isRequired": true
   }
@@ -97,11 +123,8 @@ ___TESTS___
 scenarios:
 - name: URL is correctly constructed from API token
   code: |-
-    const mockData = {
-      token: '0123456789abcdef'
-    };
     mock('sendPixel', (url, onSuccess, onFailure) => {
-      assertThat(url).isEqualTo('https://mgln.ai/pixel.gif?token=0123456789abcdef');
+      assertThat(url).isEqualTo(constructedUrl);
       onSuccess();
     });
 
@@ -109,10 +132,20 @@ scenarios:
 
     assertApi('sendPixel').wasCalled();
     assertApi('gtmOnSuccess').wasCalled();
+- name: Allowed to request constructed URL
+  code: |-
+    const queryPermission = require('queryPermission');
+
+    assertThat(queryPermission('send_pixel', constructedUrl)).isEqualTo(true);
+setup: |-
+  const mockData = {
+    token: '0123456789abcdef'
+  };
+  const constructedUrl = 'https://mgln.ai/view.gif?token=0123456789abcdef&url=https%3A%2F%2Ftagmanager.googleusercontent.com%2Fjs_sandbox_v2.html';
 
 
 ___NOTES___
 
-Created on 4/21/2022, 1:54:27 PM
+Created on 5/23/2022, 6:20:14 PM
 
 
