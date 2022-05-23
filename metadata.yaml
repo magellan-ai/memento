@@ -2,6 +2,8 @@ homepage: "https://www.magellan.ai"
 documentation: "https://github.com/magellan-ai/memento"
 versions:
   # Latest version
+  - sha: 6f5bb8bdeb2f935f4a8ce43ccfa965eb4591e4fc
+    changeNotes: Inject current URL into query string.
+  # Older versions
   - sha: 997fb2a59a6685214e827e7b8764b5b1998466ff
     changeNotes: Initial release.
-  # Older versions
