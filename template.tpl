@@ -50,7 +50,7 @@ const sendPixel = require('sendPixel');
 const getUrl = require('getUrl');
 const encodeUriComponent = require('encodeUriComponent');
 
-const url = "https://mgln.ai/view.gif?token=" + encodeUriComponent(data.token) + "&url=" + encodeUriComponent(getUrl()) ;
+const url = "https://mgln.ai/view?token=" + encodeUriComponent(data.token) + "&url=" + encodeUriComponent(getUrl()) ;
 sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
 
 
@@ -78,7 +78,7 @@ ___WEB_PERMISSIONS___
             "listItem": [
               {
                 "type": 1,
-                "string": "https://mgln.ai/view.gif?*"
+                "string": "https://mgln.ai/view?*"
               }
             ]
           }
@@ -141,11 +141,11 @@ setup: |-
   const mockData = {
     token: '0123456789abcdef'
   };
-  const constructedUrl = 'https://mgln.ai/view.gif?token=0123456789abcdef&url=https%3A%2F%2Ftagmanager.googleusercontent.com%2Fjs_sandbox_v2.html';
+  const constructedUrl = 'https://mgln.ai/view?token=0123456789abcdef&url=https%3A%2F%2Ftagmanager.googleusercontent.com%2Fjs_sandbox_v2.html';
 
 
 ___NOTES___
 
-Created on 5/23/2022, 6:20:14 PM
+Created on 6/16/2022, 2:29:15 PM
 
 
