@@ -2,8 +2,10 @@ homepage: "https://www.magellan.ai"
 documentation: "https://github.com/magellan-ai/memento"
 versions:
   # Latest version
+  - sha: 83cb23a8ba38b4ed31a21df5cd5183f448136e15
+    changeNotes: Do not specify pixel format with extension.
+  # Older versions
   - sha: 6f5bb8bdeb2f935f4a8ce43ccfa965eb4591e4fc
     changeNotes: Inject current URL into query string.
-  # Older versions
   - sha: 997fb2a59a6685214e827e7b8764b5b1998466ff
     changeNotes: Initial release.
